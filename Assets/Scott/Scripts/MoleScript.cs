@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class MoleScript : Clickable
 {
-    
+    protected override void GotClicked()
+    {
+        
+    }
 }
