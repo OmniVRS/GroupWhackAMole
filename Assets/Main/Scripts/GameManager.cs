@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public Button startButton;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    public GameObject moleception;
+    public GameObject background;
     private int score;
     private int lives;
     public AudioSource audioSource;
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        background.SetActive(false);
+        moleception.SetActive(true);
         endScreen.SetActive(false);
         gameUI.SetActive(false);
         titleScreen.SetActive(true);
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         titleScreen.SetActive(false);
+        moleception.SetActive(false);
+        background.SetActive(true);
         gameUI.SetActive(true);
         spawner.GetComponent<MoleSpawner>().isPlaying = true;
         spawner.GetComponent<MoleSpawner>().RemoteSpawn();
