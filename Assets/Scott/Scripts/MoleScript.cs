@@ -21,9 +21,12 @@ public class MoleScript : Clickable
 
     protected override void GotClicked()
     {
+        if (!isClicked)
+        {
+            gm.UpdateScore(1);
+        }
         isClicked = true;
         sr.sprite = deadMole;
-        gm.UpdateScore(1);
         Invoke("KillIt", actualDifficulty);
     }
 
