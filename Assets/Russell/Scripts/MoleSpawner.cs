@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoleSpawner : MonoBehaviour
 {
     public GameObject molePrefab;
+    private GameManager gm;
     private float spawnRate;
     public bool isPlaying = false;
     public bool started;
@@ -13,6 +14,7 @@ public class MoleSpawner : MonoBehaviour
     void Start()
     {
         //StartCoroutine(SpawnEnemies());
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class MoleSpawner : MonoBehaviour
         while (isPlaying)
         {
             Instantiate(molePrefab, new Vector2(Random.Range(-2.31f, 2.32f), Random.Range(-4.31f, 4.38f)), molePrefab.transform.rotation);
+            gm.audioSource.PlayOneShot(gm.spawnSound);
             yield return new WaitForSeconds(3);
             //yield return new WaitForEndOfFrame();
         }

@@ -16,10 +16,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     private int score;
     private int lives;
+    public AudioSource audioSource;
+    public AudioClip spawnSound;
+    public AudioClip hitSound;
+    public AudioClip leaveSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         endScreen.SetActive(false);
         gameUI.SetActive(false);
         titleScreen.SetActive(true);

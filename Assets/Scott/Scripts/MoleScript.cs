@@ -25,17 +25,11 @@ public class MoleScript : Clickable
         if (!isClicked)
         {
             gm.UpdateScore(1);
+            gm.audioSource.PlayOneShot(gm.hitSound);
         }
 
         isClicked = true;
         sr.sprite = deadMole;
-        float dropChance = Random.Range(0f, 10f);
-
-        if (dropChance > 8f)
-        {
-            Instantiate(collectablePrefab, transform.position, collectablePrefab.transform.rotation);
-        }
-
         Invoke("KillIt", actualDifficulty);
     }
 
@@ -44,12 +38,20 @@ public class MoleScript : Clickable
         if (!isClicked)
         {
             gm.UpdateLives(1);
+            gm.audioSource.PlayOneShot(gm.leaveSound);
             Destroy(gameObject);
         }
     }
 
     void KillIt()
     {
+        float dropChance = Random.Range(0f, 10f);
+
+        if (dropChance > 8f)
+        {
+            Instantiate(collectablePrefab, transform.position, collectablePrefab.transform.rotation);
+        }
+
         Destroy(gameObject);
     }
 }
