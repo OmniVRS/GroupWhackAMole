@@ -9,6 +9,7 @@ public class MoleScript : Clickable
     public Sprite deadMole;
     private bool isClicked;
     public float actualDifficulty;
+    public GameObject collectablePrefab;
 
     protected override void Start()
     {
@@ -25,8 +26,16 @@ public class MoleScript : Clickable
         {
             gm.UpdateScore(1);
         }
+
         isClicked = true;
         sr.sprite = deadMole;
+        float dropChance = Random.Range(0f, 10f);
+
+        if (dropChance > 8f)
+        {
+            Instantiate(collectablePrefab, transform.position, collectablePrefab.transform.rotation);
+        }
+
         Invoke("KillIt", actualDifficulty);
     }
 
