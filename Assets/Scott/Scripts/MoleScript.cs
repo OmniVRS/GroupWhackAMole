@@ -23,6 +23,7 @@ public class MoleScript : Clickable
     {
         isClicked = true;
         sr.sprite = deadMole;
+        gm.UpdateScore(1);
         Invoke("KillIt", actualDifficulty);
     }
 
@@ -30,6 +31,7 @@ public class MoleScript : Clickable
     {
         if (!isClicked)
         {
+            gm.UpdateLives(1);
             Destroy(gameObject);
         }
     }
