@@ -6,12 +6,13 @@ public class MoleSpawner : MonoBehaviour
 {
     public GameObject molePrefab;
     private float spawnRate;
-    private bool isPlaying = true;
+    public bool isPlaying = false;
+    public bool started;
     //X range is -2.31 to 2.32, Y range is -4.31 to 4.38
     // Start is called before the first fame update
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
+        //StartCoroutine(SpawnEnemies());
     }
 
     // Update is called once per frame
@@ -19,7 +20,7 @@ public class MoleSpawner : MonoBehaviour
     {
         
     }
-    IEnumerator SpawnEnemies()
+    public IEnumerator SpawnEnemies()
     {
         while (isPlaying)
         {
@@ -28,5 +29,10 @@ public class MoleSpawner : MonoBehaviour
             //yield return new WaitForEndOfFrame();
         }
        
+    }
+
+    public void RemoteSpawn()
+    {
+        StartCoroutine(SpawnEnemies());
     }
 }
